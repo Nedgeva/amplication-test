@@ -5,7 +5,9 @@ import {
   ShowProps,
   DateField,
   TextField,
+  ReferenceField,
 } from "react-admin";
+import { HEALTHSTATE_TITLE_FIELD } from "../healthstate/HealthstateTitle";
 
 export const UserShow = (props: ShowProps): React.ReactElement => {
   return (
@@ -13,6 +15,13 @@ export const UserShow = (props: ShowProps): React.ReactElement => {
       <SimpleShowLayout>
         <DateField source="createdAt" label="Created At" />
         <TextField label="First Name" source="firstName" />
+        <ReferenceField
+          label="healthstates"
+          source="healthstate.id"
+          reference="Healthstate"
+        >
+          <TextField source={HEALTHSTATE_TITLE_FIELD} />
+        </ReferenceField>
         <TextField label="ID" source="id" />
         <TextField label="Last Name" source="lastName" />
         <TextField label="Roles" source="roles" />
