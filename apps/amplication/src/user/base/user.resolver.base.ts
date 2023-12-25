@@ -26,6 +26,7 @@ import { UserFindUniqueArgs } from "./UserFindUniqueArgs";
 import { CreateUserArgs } from "./CreateUserArgs";
 import { UpdateUserArgs } from "./UpdateUserArgs";
 import { DeleteUserArgs } from "./DeleteUserArgs";
+import { Healthstate } from "../../healthstate/base/Healthstate";
 import { UserService } from "../user.service";
 @common.UseGuards(GqlDefaultAuthGuard, gqlACGuard.GqlACGuard)
 @graphql.Resolver(() => User)
@@ -86,7 +87,15 @@ export class UserResolverBase {
   async createUser(@graphql.Args() args: CreateUserArgs): Promise<User> {
     return await this.service.createUser({
       ...args,
-      data: args.data,
+      data: {
+        ...args.data,
+
+        healthstates: args.data.healthstates
+          ? {
+              connect: args.data.healthstates,
+            }
+          : undefined,
+      },
     });
   }
 
@@ -101,7 +110,15 @@ export class UserResolverBase {
     try {
       return await this.service.updateUser({
         ...args,
-        data: args.data,
+        data: {
+          ...args.data,
+
+          healthstates: args.data.healthstates
+            ? {
+                connect: args.data.healthstates,
+              }
+            : undefined,
+        },
       });
     } catch (error) {
       if (isRecordNotFoundError(error)) {
@@ -130,5 +147,26 @@ export class UserResolverBase {
       }
       throw error;
     }
+  }
+
+  @common.UseInterceptors(AclFilterResponseInterceptor)
+  @graphql.ResolveField(() => Healthstate, {
+    nullable: true,
+    name: "healthstates",
+  })
+  @nestAccessControl.UseRoles({
+    resource: "Healthstate",
+    action: "read",
+    possession: "any",
+  })
+  async getHealthstates(
+    @graphql.Parent() parent: User
+  ): Promise<Healthstate | null> {
+    const result = await this.service.getHealthstates(parent.id);
+
+    if (!result) {
+      return null;
+    }
+    return result;
   }
 }

@@ -47,10 +47,25 @@ export class UserControllerBase {
   })
   async createUser(@common.Body() data: UserCreateInput): Promise<User> {
     return await this.service.createUser({
-      data: data,
+      data: {
+        ...data,
+
+        healthstates: data.healthstates
+          ? {
+              connect: data.healthstates,
+            }
+          : undefined,
+      },
       select: {
         createdAt: true,
         firstName: true,
+
+        healthstates: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
         lastName: true,
         roles: true,
@@ -79,6 +94,13 @@ export class UserControllerBase {
       select: {
         createdAt: true,
         firstName: true,
+
+        healthstates: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
         lastName: true,
         roles: true,
@@ -108,6 +130,13 @@ export class UserControllerBase {
       select: {
         createdAt: true,
         firstName: true,
+
+        healthstates: {
+          select: {
+            id: true,
+          },
+        },
+
         id: true,
         lastName: true,
         roles: true,
@@ -142,10 +171,25 @@ export class UserControllerBase {
     try {
       return await this.service.updateUser({
         where: params,
-        data: data,
+        data: {
+          ...data,
+
+          healthstates: data.healthstates
+            ? {
+                connect: data.healthstates,
+              }
+            : undefined,
+        },
         select: {
           createdAt: true,
           firstName: true,
+
+          healthstates: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
           lastName: true,
           roles: true,
@@ -183,6 +227,13 @@ export class UserControllerBase {
         select: {
           createdAt: true,
           firstName: true,
+
+          healthstates: {
+            select: {
+              id: true,
+            },
+          },
+
           id: true,
           lastName: true,
           roles: true,

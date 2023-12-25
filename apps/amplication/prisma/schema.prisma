@@ -8,12 +8,25 @@ generator client {
 }
 
 model User {
-  createdAt DateTime @default(now())
-  firstName String?
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  lastName  String?
-  password  String
-  roles     Json
-  updatedAt DateTime @updatedAt
-  username  String   @unique
+  createdAt    DateTime     @default(now())
+  firstName    String?
+  healthstates Healthstate?
+  id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  lastName     String?
+  password     String
+  roles        Json
+  updatedAt    DateTime     @updatedAt
+  username     String       @unique
+}
+
+model Healthstate {
+  bloodPressureDia Int
+  bloodPressureSys Int
+  createdAt        DateTime @default(now())
+  feelings         String?
+  id               String   @id @default(auto()) @map("_id") @db.ObjectId
+  pulse            Int
+  updatedAt        DateTime @updatedAt
+  userId           User     @relation(fields: [id], references: [id])
+  id               String   @unique @db.ObjectId
 }
