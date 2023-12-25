@@ -6,6 +6,7 @@ export type User = {
   firstName: string | null;
   healthstates?: Healthstate | null;
   id: string;
+  isVerified: boolean | null;
   lastName: string | null;
   roles: JsonValue;
   updatedAt: Date;

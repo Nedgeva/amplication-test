@@ -5,6 +5,7 @@ export type UserOrderByInput = {
   firstName?: SortOrder;
   healthstatesId?: SortOrder;
   id?: SortOrder;
+  isVerified?: SortOrder;
   lastName?: SortOrder;
   password?: SortOrder;
   roles?: SortOrder;

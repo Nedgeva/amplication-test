@@ -12,6 +12,7 @@ model User {
   firstName    String?
   healthstates Healthstate?
   id           String       @id @default(auto()) @map("_id") @db.ObjectId
+  isVerified   Boolean?
   lastName     String?
   password     String
   roles        Json
@@ -27,6 +28,6 @@ model Healthstate {
   id               String   @id @default(auto()) @map("_id") @db.ObjectId
   pulse            Int
   updatedAt        DateTime @updatedAt
-  userId           User     @relation(fields: [id], references: [id])
-  id               String   @unique @db.ObjectId
+  userId           User     @relation(fields: [user_id], references: [id])
+  user_id          String   @unique @db.ObjectId
 }

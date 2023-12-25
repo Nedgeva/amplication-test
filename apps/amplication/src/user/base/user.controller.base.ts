@@ -67,6 +67,7 @@ export class UserControllerBase {
         },
 
         id: true,
+        isVerified: true,
         lastName: true,
         roles: true,
         updatedAt: true,
@@ -102,6 +103,7 @@ export class UserControllerBase {
         },
 
         id: true,
+        isVerified: true,
         lastName: true,
         roles: true,
         updatedAt: true,
@@ -138,6 +140,7 @@ export class UserControllerBase {
         },
 
         id: true,
+        isVerified: true,
         lastName: true,
         roles: true,
         updatedAt: true,
@@ -191,6 +194,7 @@ export class UserControllerBase {
           },
 
           id: true,
+          isVerified: true,
           lastName: true,
           roles: true,
           updatedAt: true,
@@ -235,6 +239,7 @@ export class UserControllerBase {
           },
 
           id: true,
+          isVerified: true,
           lastName: true,
           roles: true,
           updatedAt: true,

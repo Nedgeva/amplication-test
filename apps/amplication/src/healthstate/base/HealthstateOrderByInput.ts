@@ -105,7 +105,7 @@ class HealthstateOrderByInput {
   @Field(() => SortOrder, {
     nullable: true,
   })
-  id?: SortOrder;
+  user_id?: SortOrder;
 }
 
 export { HealthstateOrderByInput as HealthstateOrderByInput };

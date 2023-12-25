@@ -8,5 +8,5 @@ export type HealthstateOrderByInput = {
   id?: SortOrder;
   pulse?: SortOrder;
   updatedAt?: SortOrder;
-  id?: SortOrder;
+  user_id?: SortOrder;
 };
