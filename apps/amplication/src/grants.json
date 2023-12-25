@@ -1,6 +1,6 @@
 [
   {
-    "role": "admin",
+    "role": "user",
     "resource": "User",
     "action": "read:own",
     "attributes": "*"
@@ -12,22 +12,22 @@
     "attributes": "*"
   },
   {
+    "role": "user",
+    "resource": "User",
+    "action": "create:any",
+    "attributes": "*,!roles,!isVerified"
+  },
+  {
     "role": "admin",
     "resource": "User",
     "action": "update:any",
     "attributes": "*"
   },
   {
-    "role": "admin",
+    "role": "user",
     "resource": "User",
-    "action": "delete:any",
-    "attributes": "*"
-  },
-  {
-    "role": "admin",
-    "resource": "User",
-    "action": "read:any",
-    "attributes": "*"
+    "action": "update:any",
+    "attributes": "*,!roles,!isVerified"
   },
   {
     "role": "user",

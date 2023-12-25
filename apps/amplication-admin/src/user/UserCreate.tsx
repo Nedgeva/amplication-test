@@ -7,6 +7,7 @@ import {
   TextInput,
   ReferenceInput,
   SelectInput,
+  BooleanInput,
   PasswordInput,
   SelectArrayInput,
 } from "react-admin";
@@ -26,6 +27,7 @@ export const UserCreate = (props: CreateProps): React.ReactElement => {
         >
           <SelectInput optionText={HealthstateTitle} />
         </ReferenceInput>
+        <BooleanInput label="IsVerified" source="isVerified" />
         <TextInput label="Last Name" source="lastName" />
         <PasswordInput label="Password" source="password" />
         <SelectArrayInput

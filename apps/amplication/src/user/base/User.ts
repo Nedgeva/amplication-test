@@ -11,7 +11,13 @@ https://docs.amplication.com/how-to/custom-code
   */
 import { ObjectType, Field } from "@nestjs/graphql";
 import { ApiProperty } from "@nestjs/swagger";
-import { IsDate, IsString, IsOptional, ValidateNested } from "class-validator";
+import {
+  IsDate,
+  IsString,
+  IsOptional,
+  ValidateNested,
+  IsBoolean,
+} from "class-validator";
 import { Type } from "class-transformer";
 import { Healthstate } from "../../healthstate/base/Healthstate";
 import { IsJSONValue } from "../../validators";
@@ -55,6 +61,17 @@ class User {
   @IsString()
   @Field(() => String)
   id!: string;
+
+  @ApiProperty({
+    required: false,
+    type: Boolean,
+  })
+  @IsBoolean()
+  @IsOptional()
+  @Field(() => Boolean, {
+    nullable: true,
+  })
+  isVerified!: boolean | null;
 
   @ApiProperty({
     required: false,
